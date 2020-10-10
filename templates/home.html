@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+<div class="row">
+  <div class="col-md-4">
+      {% for post in all_posts_lists %}
+      <strong> {{ post.author.username }}</strong><br>
+      <img src="{{ post.image.url}}" width = 400 height=400 alt="#" class="img-circle">  
+      <p><em>{{ post.created}}</em><br>{{ post.descritption}}</p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
