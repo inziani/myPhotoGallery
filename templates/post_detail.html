@@ -3,22 +3,30 @@
 
 {% block content %}
 <div class="container">
-  <strong>{{ object.author.username}}</strong><br>
 <img src="{{ object.image.url }}" alt="#" width=400, height=400>
 <p><em>{{ object.created }}</em><br>{{ object.descritption }}</p>
-<ul>
-  {% for comment in object.comment_set.all %}
-  <li>
-    <strong>{{ comment.author }}</strong>
-    {{ comment.text }}
-  </li>
-  {% endfor %}
-</ul>
+
+<p><a href="{% url 'edit_post' object.id %}">Edit</a>|
+  <a href="{% url 'delete_post' object.id %}">Delete</a>
+  <p></p>Back to <a href="{% url 'home' %}">all posts</a>.</p> 
+
+
 <form action="{% url 'comments' pk=object.id %}" method="POST">
   {% csrf_token %}
   {{ comment_form|crispy}}
   <input type="submit" value="Post comment" class="btn btn-primary btn-lg">
 </form>
+
+<ul>
+  {% for comment in object.comment_set.all %}
+  <li>
+    <strong>{{ comment.author }}</strong>
+            {{ comment.text }}
+  </li>
+
+  
+  {% endfor %}
+</ul>
 
 </div>
 

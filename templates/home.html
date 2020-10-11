@@ -1,15 +1,28 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
-<div class="row">
-  <div class="col-md-4">
+
+<div class="container-fluid">
+  <div class="row align-items-center">
       {% for post in all_posts_lists %}
-      <strong> {{ post.author.username }}</strong><br>
-      <img src="{{ post.image.url}}" width = 400 height=400 alt="#" class="img-circle">  
-      <p><em>{{ post.created}}</em><br>{{ post.descritption}}</p>
+      <div class="col-lg-3">
+
+<div class="card-body">
+  <img src="{{ post.image.url}}" width = 400 height=400 alt="#" class="img-circle"><br><br>
+  <p> {{ post.author.username }}</p>
+  <p><em>{{ post.created}}</em><br></p>
+  <a href="{% url 'comments' post.pk %}">{{ post.title}}</a>
+</div>
+
+<!-- <div class="card-footer text-center text-muted">
+  <a href="{% url 'edit_post' post.pk %}"</a>Edit</a>|<a href="{% url 'delete_post' post.pk %}">Delete</a>
+</div> -->
+</div>
+
+      
+
       {% endfor %}
-    </div>
+   
   </div>
 </div>
 {% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content%}
+
+<div class="container">
+  <h1>Delete</h1>
+  <form action="{% url 'delete_post' pk=object.id %}"  method="POST">
+    {% csrf_token %}
+    <p>Are you sure you want to delete "{{ post.descritption }}" ?</p>
+    <button class="btn btn-danger btn-lg" type="submit">Confirm</button>
+
+  </form>
+</div>
+
+{% endblock content%}

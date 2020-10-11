@@ -1,13 +1,17 @@
 from django.shortcuts import render
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
+from django.views.generic import TemplateView
 from django import forms
 from django.shortcuts import redirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from gallery.models import Post, Comment
 
 # Create your views here
+
+class HomePageView(TemplateView):
+   template_name = 'index.html'
 
 class PostList(ListView):
   model = Post
@@ -17,7 +21,7 @@ class PostList(ListView):
 class PostCreate(CreateView):
   model = Post
   template_name = 'new_post.html'
-  fields = ['image', 'descritption', 'author']
+  fields = ['image', 'title', 'category', 'descritption', 'author']
   success_url = '/'
 
 class CommentForm(forms.Form):
@@ -40,6 +44,19 @@ class PostDetail(DetailView):
     else:
       raise Exception
     return redirect(reverse('comments', args=[self.get_object().id]))
+
+class PostUpdateView(UpdateView):
+  model = Post
+  fields = ['image','title', 'category', 'descritption']
+  template_name = 'edit_post.html'
+  success_url = '/'
+
+class PostDeleteView(DeleteView):
+  model = Post
+  template = 'post_delete.html'
+  success_url = ('/')
+ 
+
 
 
 

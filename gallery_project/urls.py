@@ -17,12 +17,16 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from gallery.views import PostList, PostCreate, PostDetail
+from gallery.views import PostList, PostCreate, PostDetail, PostUpdateView, PostDeleteView, HomePageView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', PostList.as_view(), name = 'home'),
+    path('', HomePageView.as_view(), name = 'index'),
+    path('/home', PostList.as_view(), name = 'home'),
     path('new/', PostCreate.as_view(), name = 'new_post'),
     path('posts/<pk>/', PostDetail.as_view(), name = 'comments'),
+    path('posts/edit/<pk>/', PostUpdateView.as_view(), name = 'edit_post'),
+    path('posts/delete/<pk>/', PostDeleteView.as_view(), name = 'delete_post'),
+    
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

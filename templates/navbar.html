@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>myPhotoGallery</title>
+</head>
+<body>
+
+  <div class="container-fluid">
+
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+    <a class="navbar-brand" href="{% url 'home' %}">myPhotoGallery</a> 
+    {% if user.is_authenticated %}
+    <ul class="navbar-nav mr-auto">
+    <li class="nav-item"><a href="{% url 'new_post' %}">+ New</a></li>
+    </ul>
+    {% endif %}
+
+  </div>
+
+
+  
+</body>
+</html>

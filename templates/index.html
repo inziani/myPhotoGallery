@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %} 
+<div class="container align-items-center ">
+
+<div class="jumbotron my-auto ">
+  <h1 class="display-4">myPhotoGallery app</h1>
+  <p class="lead">A photo gallery website built with Django.</p> <p class="lead">
+  <a class="btn btn-primary btn-lg" href="{% url 'home' %}" role="button">View All Pictures</a>
+  </p>
+ </div>
+
+</div>
+
+{% endblock content %}
