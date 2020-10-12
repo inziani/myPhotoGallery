@@ -12,6 +12,9 @@ dj-database-url = "*"
 python-decouple = "*"
 django-on-heroku = "*"
 django-bootstrap4 = "*"
+django-crispy-forms = "*"
+pillow = "*"
+psycopg2-binary = "*"
 
 [requires]
 python_version = "3.8"
