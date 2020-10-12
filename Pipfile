@@ -10,6 +10,7 @@ django = "==3.0"
 gunicorn = "*"
 dj-database-url = "*"
 python-decouple = "*"
+django-on-heroku = "*"
 
 [requires]
 python_version = "3.8"
