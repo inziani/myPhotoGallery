@@ -54,7 +54,7 @@ class PostUpdateView(UpdateView):
 
 class PostDeleteView(DeleteView):
   model = Post
-  template = 'post_confirm_delete.html'
+  template = 'post_delete.html'
   success_url = '/home'
 
 class SearchResultsView(ListView):
