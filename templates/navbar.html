@@ -15,6 +15,9 @@
     <ul class="navbar-nav mr-auto">
     <li class="nav-item"><a href="{% url 'new_post' %}">+ New</a></li>
     </ul>
+    <form action="{% url 'search_results' %}" method="GET">
+      <input name="q" type="text" placeholder="Search...">
+    </form>
     {% endif %}
 
   </div>

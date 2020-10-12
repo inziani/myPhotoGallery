@@ -6,6 +6,7 @@ from django.views.generic import TemplateView
 from django import forms
 from django.shortcuts import redirect
 from django.urls import reverse, reverse_lazy
+from django.db.models import Q
 from gallery.models import Post, Comment
 
 # Create your views here
@@ -22,7 +23,7 @@ class PostCreate(CreateView):
   model = Post
   template_name = 'new_post.html'
   fields = ['image', 'title', 'category', 'descritption', 'author']
-  success_url = '/'
+  success_url = '/home'
 
 class CommentForm(forms.Form):
   comment = forms.CharField()
@@ -49,12 +50,24 @@ class PostUpdateView(UpdateView):
   model = Post
   fields = ['image','title', 'category', 'descritption']
   template_name = 'edit_post.html'
-  success_url = '/'
+  success_url = '/home'
 
 class PostDeleteView(DeleteView):
   model = Post
-  template = 'post_delete.html'
-  success_url = ('/')
+  template = 'post_confirm_delete.html'
+  success_url = '/home'
+
+class SearchResultsView(ListView):
+  model =Post
+  template_name = 'search_results.html'
+  # context_object_name = 'all_posts_lists'
+  # queryset =Post.objects.filter(title__icontains='jungle') 
+
+  def get_queryset(self):
+    query = self.request.GET.get('q')
+    object_list = Post.objects.filter(Q(title__icontains=query))
+    return object_list
+
  
 
 
